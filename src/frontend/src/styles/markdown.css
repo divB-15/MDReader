@@ -1,0 +1,635 @@
+/* --------------------------------- typography -------------------------------- */
+
+.markdown-body {
+  font-family: var(--font-body);
+  font-size: var(--reader-size);
+  line-height: var(--reader-leading);
+  color: var(--text);
+  overflow-wrap: break-word;
+  text-spacing-trim: trim-start;
+  text-autospace: normal;
+}
+
+.markdown-body > h1:first-child,
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body p {
+  margin: 0 0 var(--reader-gap);
+  text-indent: var(--indent-body);
+}
+
+[data-justify="1"] .markdown-body p {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* First-line indents are a per-structure setting: body, quote and list can
+   differ, while code blocks only take an explicit left inset. */
+.markdown-body blockquote p,
+.markdown-body li > p,
+.markdown-body li {
+  text-indent: var(--indent-quote);
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  text-indent: 0;
+}
+
+.markdown-body li {
+  text-indent: var(--indent-list);
+}
+
+.markdown-body li.task-list-item {
+  text-indent: 0;
+}
+
+.markdown-body li > p {
+  text-indent: var(--indent-list);
+}
+
+.markdown-body .footnotes p,
+.markdown-body p:has(> img),
+.markdown-body p:has(> .katex-display) {
+  text-indent: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-family: var(--font-heading);
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  scroll-margin-top: 28px;
+}
+
+.markdown-body h1 {
+  margin: 0 0 0.85em;
+  font-size: 1.72em;
+  letter-spacing: 0.005em;
+}
+
+.markdown-body h2 {
+  margin: 2.1em 0 0.75em;
+  padding-bottom: 0.32em;
+  font-size: 1.34em;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown-body h3 {
+  margin: 1.7em 0 0.6em;
+  font-size: 1.13em;
+}
+
+.markdown-body h4 {
+  margin: 1.4em 0 0.5em;
+  font-size: 1em;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  margin: 1.2em 0 0.4em;
+  font-size: 0.94em;
+  color: var(--muted);
+}
+
+.markdown-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+.markdown-body a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.markdown-body strong {
+  font-weight: 650;
+}
+
+.markdown-body em {
+  font-style: italic;
+}
+
+.markdown-body hr {
+  margin: 2.4em auto;
+  width: 42%;
+  border: 0;
+  border-top: 1px solid var(--border-strong);
+}
+
+.markdown-body blockquote {
+  margin: 1.3em 0;
+  padding: 0.5em 0 0.5em 1.1em;
+  font-family: var(--font-quote);
+  color: var(--quote-text, var(--muted));
+  background: var(--quote-bg);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 0 6px 6px 0;
+}
+
+.markdown-body blockquote p {
+  margin-bottom: 0.45em;
+}
+
+.markdown-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------- lists ------------------------------------ */
+
+.markdown-body ul,
+.markdown-body ol {
+  margin: 0 0 var(--reader-gap);
+  padding-left: 1.55em;
+}
+
+.markdown-body li {
+  margin: 0.22em 0;
+}
+
+.markdown-body li > p {
+  margin-bottom: 0.35em;
+}
+
+.markdown-body ul.task-list {
+  padding-left: 0.4em;
+}
+
+.markdown-body li.task-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55em;
+  list-style: none;
+}
+
+.markdown-body li.task-list-item input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 0.86em;
+  height: 0.86em;
+  margin: 0;
+  accent-color: var(--accent);
+  transform: translateY(0.12em);
+}
+
+/* ----------------------------------- code ------------------------------------- */
+
+.markdown-body code {
+  font-family: var(--font-code);
+  font-size: 0.86em;
+  padding: 0.12em 0.36em;
+  color: var(--text);
+  background: var(--code-bg);
+  border-radius: 5px;
+}
+
+/* A fenced block with a language gets a thin label strip above the code. The
+   strip lives outside the horizontal scroller, so it is never clipped and never
+   covers a line. */
+.markdown-body .code-wrap {
+  margin: 1.35em 0 1.35em var(--indent-code);
+}
+
+.markdown-body .code-wrap[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  padding: 5px 14px 4px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  text-align: left;
+  background: color-mix(in srgb, var(--text) 3.4%, var(--code-bg));
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  user-select: none;
+}
+
+.markdown-body .code-wrap > pre {
+  margin: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+.markdown-body pre {
+  margin: 1.35em 0 1.35em var(--indent-code);
+  padding: 14px 0;
+  overflow-x: auto;
+  font-family: var(--font-code);
+  font-size: 0.83em;
+  line-height: 1.66;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  tab-size: 2;
+}
+
+.markdown-body pre code {
+  display: block;
+  padding: 0;
+  font-size: 1em;
+  background: none;
+  border-radius: 0;
+  white-space: pre;
+}
+
+/* One row per source line; the number cell sticks to the left edge so it stays
+   visible while a long line is scrolled horizontally. */
+.markdown-body .code-line {
+  display: flex;
+  align-items: flex-start;
+  min-height: 1lh;
+  padding: 0 18px;
+}
+
+.markdown-body .code-text {
+  flex: 0 0 auto;
+  white-space: pre;
+}
+
+.markdown-body .code-ln {
+  display: none;
+  position: sticky;
+  left: 0;
+  flex: 0 0 auto;
+  width: 3.4em;
+  padding: 0 0.55em 0 12px;
+  text-align: right;
+  color: var(--faint);
+  background: var(--code-bg);
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-code-numbers="1"] .markdown-body .code-ln {
+  display: block;
+}
+
+[data-code-numbers="1"] .markdown-body .code-line {
+  padding-left: 0;
+}
+
+[data-code-wrap="1"] .markdown-body .code-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* -------------------------------- highlighting -------------------------------- */
+
+:root {
+  --hl-key: #9c4f96;
+  --hl-str: #4c8259;
+  --hl-num: #97652c;
+  --hl-com: #8b9099;
+  --hl-fn: #3567c8;
+  --hl-type: #2c7d88;
+  --hl-var: #6a58a9;
+  --hl-tag: #a4523f;
+}
+
+[data-theme="night"] {
+  --hl-key: #c88ad2;
+  --hl-str: #8fc79a;
+  --hl-num: #d7b06b;
+  --hl-com: #6d747f;
+  --hl-fn: #8fb4ff;
+  --hl-type: #7fd3dd;
+  --hl-var: #b0a2e0;
+  --hl-tag: #e79a86;
+}
+
+.hljs-keyword,
+.hljs-control,
+.hljs-selector-tag {
+  color: var(--hl-key);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-char,
+.hljs-meta .hljs-string {
+  color: var(--hl-str);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-attr {
+  color: var(--hl-num);
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--hl-com);
+  font-style: italic;
+}
+
+.hljs-function,
+.hljs-title,
+.hljs-title.function_,
+.hljs-section {
+  color: var(--hl-fn);
+}
+
+.hljs-title.class_,
+.hljs-type,
+.hljs-built_in,
+.hljs-class {
+  color: var(--hl-type);
+}
+
+.hljs-variable,
+.hljs-variable.language_,
+.hljs-property,
+.hljs-params {
+  color: var(--hl-var);
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: var(--hl-tag);
+}
+
+.hljs-operator,
+.hljs-punctuation,
+.hljs-subst {
+  color: var(--muted);
+}
+
+.hljs-meta {
+  color: var(--hl-com);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 600;
+}
+
+/* ---------------------------------- tables ------------------------------------ */
+
+.markdown-body table {
+  display: block;
+  /* Shrink to the natural column width and centre the box; a full-width table
+     always reads as left-aligned because the columns bunch up on the left. */
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  margin: 1.3em auto;
+  overflow-x: auto;
+  font-size: 0.9em;
+  line-height: 1.62;
+  border-collapse: collapse;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+}
+
+.markdown-body table th {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+}
+
+.markdown-body table tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--text) 2.2%, transparent);
+}
+
+.markdown-body table caption {
+  padding-bottom: 6px;
+  font-size: 0.86em;
+  color: var(--muted);
+}
+
+/* ---------------------------------- images ------------------------------------ */
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* A picture alone in its paragraph is centred; images mixed into a sentence
+   keep flowing inline. The reader also promotes such images to a <figure>. */
+.markdown-body p:has(> img:only-child) {
+  text-align: center;
+  text-indent: 0;
+}
+
+.markdown-body p > img:only-child {
+  display: inline-block;
+  margin: 0.35em auto;
+}
+
+.markdown-body img.mr-img {
+  cursor: zoom-in;
+}
+
+.markdown-body img.mr-img-pending {
+  display: block;
+  min-height: 72px;
+  min-width: 120px;
+  background: linear-gradient(100deg, var(--code-bg) 30%, var(--surface) 50%, var(--code-bg) 70%);
+  background-size: 220% 100%;
+  animation: mr-shimmer 1.6s linear infinite;
+}
+
+@keyframes mr-shimmer {
+  from {
+    background-position: 120% 0;
+  }
+  to {
+    background-position: -120% 0;
+  }
+}
+
+.markdown-body img.mr-img-broken {
+  display: none;
+}
+
+.markdown-body .mr-img-missing {
+  margin: 0.8em 0;
+  padding: 14px 16px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--faint);
+  text-align: center;
+  background: var(--code-bg);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+}
+
+.markdown-body .mr-figure {
+  margin: 1.7em 0;
+  text-align: center;
+}
+
+.markdown-body .mr-figure img {
+  display: block;
+  margin: 0 auto;
+  box-shadow: var(--img-shadow);
+}
+
+.markdown-body .mr-figure figcaption {
+  margin-top: 0.65em;
+  font-family: var(--font-body);
+  font-size: 0.8em;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ----------------------------------- math ------------------------------------- */
+
+.markdown-body .katex {
+  font-size: 1.05em;
+}
+
+.markdown-body .katex-display {
+  margin: 1.5em 0;
+  padding: 0.25em 0 0.6em;
+  /* Auto margins centre the formula but collapse to zero once it is wider than
+     the column, so an overlong line starts flush left and can be scrolled from
+     its beginning (plain centring would clip both ends). */
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* A display formula is never allowed to wrap: instead the block scrolls.
+     No `scrollbar-width` here on purpose: setting it makes Chromium ignore the
+     ::-webkit-scrollbar rules below and draw its own arrowed scrollbar. */
+}
+
+.markdown-body .katex-display > .katex {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown-body .katex-display::-webkit-scrollbar {
+  height: 9px;
+}
+
+.markdown-body .katex-display::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.markdown-body .katex-display::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-clip: content-box;
+}
+
+.markdown-body .katex-display > .katex {
+  white-space: nowrap;
+}
+
+/* --------------------------------- footnotes ---------------------------------- */
+
+.markdown-body .footnotes {
+  margin-top: 3em;
+  padding-top: 1.2em;
+  font-size: 0.86em;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+.markdown-body .footnotes p {
+  margin-bottom: 0.5em;
+}
+
+.markdown-body .footnotes h2 {
+  margin: 0 0 0.8em;
+  font-size: 1em;
+  border: 0;
+  color: var(--muted);
+}
+
+.markdown-body .footnotes ol {
+  padding-left: 1.3em;
+}
+
+.markdown-body a[data-footnote-backref] {
+  text-decoration: none;
+  margin-left: 0.2em;
+}
+
+/* ---------------------------------- details ----------------------------------- */
+
+.markdown-body details {
+  margin: 1.3em 0;
+  padding: 0.7em 1em;
+  background: color-mix(in srgb, var(--text) 2.6%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 0.95em;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.94em;
+  color: var(--muted);
+  user-select: none;
+}
+
+.markdown-body details[open] summary {
+  margin-bottom: 0.7em;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.markdown-body details > p {
+  margin-bottom: 0.6em;
+}
+
+.markdown-body mark {
+  padding: 0 0.15em;
+  color: inherit;
+  background: var(--mark);
+  border-radius: 3px;
+}
+
+.markdown-body kbd {
+  font-size: 0.82em;
+}
+
+.markdown-body abbr {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* ---------------------------------- search ------------------------------------ */
+
+.markdown-body mark.mr-hit {
+  padding: 0;
+  color: inherit;
+  background: var(--mark);
+  border-radius: 2px;
+  box-shadow: inset 0 -0.1em 0 color-mix(in srgb, var(--text) 18%, transparent);
+}
+
+.markdown-body mark.mr-hit-current {
+  color: var(--accent-contrast);
+  background: var(--accent);
+}
