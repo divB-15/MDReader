@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+#  Build output (CMake generated; run build.bat after a fresh checkout)
+#  bin/ holds the one shipped exe and its runtime profile, neither is tracked.
+# ---------------------------------------------------------------------------
+build/
+out/
+bin/
+*.o
+*.obj
+*.a
+*.lib
+*.exe
+*.dll
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# ---------------------------------------------------------------------------
+#  Frontend dev dependencies (restore with `npm ci` in src/frontend).
+#  NOTE: src/frontend/dist/index.html is intentionally NOT ignored - it is the
+#  prebuilt page that gets embedded into the exe, so the host builds offline.
+# ---------------------------------------------------------------------------
+node_modules/
+src/frontend/.vite/
+*.local
+
+# ---------------------------------------------------------------------------
+#  Runtime data: settings, recent files, reading progress (portable profile)
+# ---------------------------------------------------------------------------
+MDReader.exe.WebView2/
+
+# ---------------------------------------------------------------------------
+#  IDE / editor / OS
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.user
+*.suo
+*~
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+#  Local, machine-specific build overrides (never committed; holds your own
+#  CMake / compiler paths so build.bat stays portable for everyone else)
+# ---------------------------------------------------------------------------
+.build.local.bat

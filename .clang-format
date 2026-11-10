@@ -1,0 +1,24 @@
+# ============================================================================
+#  .clang-format - keep the native host consistent
+#  `clang-format -i src/main.cpp src/host/*.cpp src/host/*.h` (optional)
+# ============================================================================
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: c++17
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+
+BreakBeforeBraces: Attach
+IndentCaseLabels: true
+PointerAlignment: Right
+
+AllowShortFunctionsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: false
+
+SortIncludes: false                # webview_include.h depends on a strict include order
+AlignTrailingComments: true
+SpaceAfterCStyleCast: false
